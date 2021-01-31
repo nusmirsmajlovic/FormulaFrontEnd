@@ -1,0 +1,47 @@
+﻿@model IEnumerable<formulaFrontEnd.ViewModels.Driver>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Top 10 Greatest F1 Drivers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.driverId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.surname)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.driverId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.surname)
+            </td>
+            <td>
+                @Html.ActionLink("Races-Info", "RacesInfo", new {  surname = item.surname  }) |
+                @Html.ActionLink("Constructors", "CocstructorInfo", new { surname = item.surname }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
